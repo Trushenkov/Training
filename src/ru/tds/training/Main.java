@@ -23,26 +23,16 @@ public class Main {
 
         long startTime = System.currentTimeMillis();
 
-        /**
-         * Если первое и второе число - положительные
-         */
         if (firstNumber > 0 && secondNumber > 0) {
             getResult(firstNumber, secondNumber);
         }
 
-        /**
-         * Если первое и второе число- - отрицательные
-         */
         if (firstNumber < 0 && secondNumber < 0) {
             firstNumber = -firstNumber;
             secondNumber = -secondNumber;
             getResult(firstNumber, secondNumber);
         }
 
-        /**
-         * Если первое число положительное, а второе число отрицательное
-         * или если первое число отрицательное, а второе число положительное
-         */
         if (firstNumber > 0 && secondNumber < 0) {
             firstNumber = -firstNumber;
             secondNumber = -secondNumber;
@@ -63,12 +53,10 @@ public class Main {
      *
      * @param firstNumber  первый множитель
      * @param secondNumber второй множитель
-     * @return произведение
      */
-    private static int getResult(int firstNumber, int secondNumber) {
+    private static void getResult(int firstNumber, int secondNumber) {
         for (int i = 0; i < secondNumber; i++) {
             result += firstNumber;
         }
-        return result;
     }
 }
