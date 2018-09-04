@@ -12,8 +12,6 @@ public class Main {
 
     private static Scanner scan = new Scanner(System.in);
 
-    private static int result;
-
     public static void main(String[] args) {
 
         System.out.println("Введите первое число: ");
@@ -23,27 +21,7 @@ public class Main {
 
         long startTime = System.currentTimeMillis();
 
-        if (firstNumber > 0 && secondNumber > 0) {
-            getResult(firstNumber, secondNumber);
-        }
-
-        if (firstNumber < 0 && secondNumber < 0) {
-            firstNumber = -firstNumber;
-            secondNumber = -secondNumber;
-            getResult(firstNumber, secondNumber);
-        }
-
-        if (firstNumber > 0 && secondNumber < 0) {
-            firstNumber = -firstNumber;
-            secondNumber = -secondNumber;
-            getResult(firstNumber, secondNumber);
-        } else if (firstNumber < 0 && secondNumber > 0) {
-            firstNumber = -firstNumber;
-            secondNumber = -secondNumber;
-            getResult(secondNumber, firstNumber);
-        }
-
-        System.out.println("Результат:" + result);
+        System.out.println("Результат:" + getResult(firstNumber, secondNumber));
 
         System.out.println("Время выполнения: " + (System.currentTimeMillis() - startTime) + " ms.");
     }
@@ -53,10 +31,52 @@ public class Main {
      *
      * @param firstNumber  первый множитель
      * @param secondNumber второй множитель
+     * @return произведение
      */
-    private static void getResult(int firstNumber, int secondNumber) {
+    private static int getResult(int firstNumber, int secondNumber) {
+
+        boolean isNegative = false;
+
+        if (firstNumber == 0 || secondNumber == 0) {
+            return 0;
+        }
+
+        if (firstNumber < 0 && secondNumber > 0 || firstNumber > 0 && secondNumber < 0) {
+            isNegative = true;
+        }
+
+        if (firstNumber < 0) {
+            firstNumber = -firstNumber;
+        }
+
+        if (secondNumber < 0) {
+            secondNumber = -secondNumber;
+        }
+
+        if (secondNumber > firstNumber) {
+            switchNumbers(firstNumber, secondNumber);
+        }
+
+        int result = 0;
+
         for (int i = 0; i < secondNumber; i++) {
             result += firstNumber;
         }
+        return isNegative ? -result : result;
+    }
+
+    /**
+     * Метод меняет два числа местами в целях оптимизации в дальнейшем для использовании в цикле сложения чисел.
+     *
+     * @param firstNumber  первое число
+     * @param secondNumber второе число
+     */
+    private static void switchNumbers(int firstNumber, int secondNumber) {
+        System.out.println("Меняем два числа местами...");
+        int tmp = firstNumber;
+        firstNumber = secondNumber;
+        secondNumber = tmp;
+
+//        System.out.println("Сейчас первое число стало: " + firstNumber + ", 2 число: " + secondNumber);
     }
 }
