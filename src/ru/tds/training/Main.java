@@ -45,28 +45,31 @@ public class Main {
             isNegative = true;
         }
 
-        if (firstNumber < 0) {
-            firstNumber = -firstNumber;
-        }
-
-        if (secondNumber < 0) {
-            secondNumber = -secondNumber;
-        }
-
-        if (secondNumber > firstNumber) {
+        if (moduleOfNumber(secondNumber) > moduleOfNumber(firstNumber)) {
             switchNumbers(firstNumber, secondNumber);
         }
 
         int result = 0;
 
-        for (int i = 0; i < secondNumber; i++) {
-            result += firstNumber;
+        for (int i = 0; i < moduleOfNumber(secondNumber); i++) {
+            result += moduleOfNumber(firstNumber);
         }
         return isNegative ? -result : result;
     }
 
+
     /**
-     * Метод меняет два числа местами в целях оптимизации в дальнейшем для использовании в цикле сложения чисел.
+     * Метод возвращает модуль целого числа.
+     *
+     * @param number Целое число
+     * @return Абсолютное значение числа number
+     */
+    private static int moduleOfNumber(int number) {
+        return number < 0 ? -number : number;
+    }
+
+    /**
+     * Метод меняет два числа местами для дальнейшего использовании в цикле сложения.
      *
      * @param firstNumber  первое число
      * @param secondNumber второе число
