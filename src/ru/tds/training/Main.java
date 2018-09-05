@@ -45,14 +45,17 @@ public class Main {
             isNegative = true;
         }
 
-        if (moduleOfNumber(secondNumber) > moduleOfNumber(firstNumber)) {
+        firstNumber = moduleOfNumber(firstNumber);
+        secondNumber = moduleOfNumber(secondNumber);
+
+        if (secondNumber > firstNumber) {
             switchNumbers(firstNumber, secondNumber);
         }
 
         int result = 0;
 
-        for (int i = 0; i < moduleOfNumber(secondNumber); i++) {
-            result += moduleOfNumber(firstNumber);
+        for (int i = 0; i < secondNumber; i++) {
+            result += firstNumber;
         }
         return isNegative ? -result : result;
     }
@@ -61,8 +64,8 @@ public class Main {
     /**
      * Метод возвращает модуль целого числа.
      *
-     * @param number Целое число
-     * @return Абсолютное значение числа number
+     * @param number целое число
+     * @return модуль числа number
      */
     private static int moduleOfNumber(int number) {
         return number < 0 ? -number : number;
